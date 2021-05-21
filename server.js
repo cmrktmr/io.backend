@@ -19,6 +19,8 @@ io.on("connection", socket => {
 	});
 	
 	socket.on("drawing", (data) => {
+		    line_history.push(data.line);
+    		  io.emit('drawing', { line: data.line });
 		socket.to(socket.roomId).broadcast.emit("drawing", data);
 	});
 	
